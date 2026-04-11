@@ -1,0 +1,10 @@
+.vscode/
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+npm-debug.log*
+node_modules/
