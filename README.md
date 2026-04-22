@@ -1,6 +1,6 @@
 ﻿# 國中英文文法教材
 
-這是一套可直接開啟瀏覽的國中程度英文文法教材網站，內容已完成 `42` 個章節，適合用在自學、課堂教學、複習與練習。
+這是一套可直接開啟瀏覽的英文文法教材網站，內容已完成 `42` 個章節，適合用在自學、課堂教學、複習與練習。
 
 ## 內容特色
 
@@ -17,7 +17,7 @@
 
 ## 如何開啟
 
-1. 進入專案資料夾 `c:\Grammar-for-Beginners`
+1. 進入專案資料夾 `c:\ebooks\Grammar-for-Beginners-V2`
 2. 直接用瀏覽器開啟 `index.html`
 3. 從首頁點選任一章節開始閱讀
 
@@ -37,14 +37,26 @@
 如果你想用本機伺服器開啟，也可以在 PowerShell 執行：
 
 ```powershell
-cd c:\Grammar-for-Beginners
-python -m http.server 8000
+cd c:\ebooks\Grammar-for-Beginners-V2
+.\start-local-server.ps1
 ```
 
 然後在瀏覽器打開：
 
 ```text
 http://localhost:8000
+```
+
+如果你想換連接埠，也可以這樣執行：
+
+```powershell
+.\start-local-server.ps1 -Port 8080
+```
+
+如果你想讓伺服器在新的 PowerShell 視窗持續執行，可以用：
+
+```powershell
+.\start-local-server.ps1 -Detached
 ```
 
 ## GitHub Pages 上傳方式
@@ -72,7 +84,7 @@ http://localhost:8000
 ### 方法 2：用 Git 指令上傳
 
 ```powershell
-cd c:\Grammar-for-Beginners
+cd c:\ebooks\Grammar-for-Beginners-V2
 git init
 git add .
 git commit -m "Publish grammar ebook"
@@ -92,7 +104,7 @@ git push -u origin main
 
 ## 適合的用途
 
-- 國中英文文法自學教材
+- 英文文法自學教材
 - 補習班或學校課堂投影片輔助教材
 - GitHub Pages 線上教材網站
 - ebook 網頁版本原稿
