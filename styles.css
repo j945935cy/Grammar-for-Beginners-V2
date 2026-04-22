@@ -54,7 +54,9 @@ a {
 .hero {
   padding: 36px 24px;
   border-radius: 28px;
-  background: linear-gradient(135deg, #fff8ef, #fff2e5);
+  background:
+    radial-gradient(circle at top right, rgba(165, 201, 255, 0.45), rgba(165, 201, 255, 0) 34%),
+    linear-gradient(145deg, #fffcf7, #f5f7fb 42%, #fdfaf6);
   position: relative;
   overflow: hidden;
 }
@@ -70,6 +72,32 @@ a {
   pointer-events: none;
 }
 
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 24px 18px auto auto;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123, 171, 255, 0.16) 0, rgba(123, 171, 255, 0) 72%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.hero-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.85fr);
+  gap: 24px;
+  align-items: stretch;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
 .tag {
   display: inline-block;
   padding: 6px 12px;
@@ -80,6 +108,15 @@ a {
   letter-spacing: 0.04em;
 }
 
+.eyebrow {
+  margin: 18px 0 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #7b8a97;
+}
+
 h1, h2, h3, h4, p {
   margin-top: 0;
 }
@@ -88,6 +125,17 @@ h1 {
   font-size: clamp(2rem, 5vw, 3.4rem);
   line-height: 1.2;
   margin: 14px 0 12px;
+}
+
+h1 span {
+  display: block;
+  width: fit-content;
+  margin-bottom: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(151, 183, 234, 0.42);
+  box-shadow: 0 12px 28px rgba(123, 171, 255, 0.14);
 }
 
 .lead {
@@ -129,6 +177,7 @@ h1 {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid var(--line);
+  backdrop-filter: blur(12px);
 }
 
 .stat strong {
@@ -142,6 +191,129 @@ h1 {
   margin-top: 20px;
   padding: 28px 22px;
   border-radius: 24px;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+}
+
+.glass-card,
+.phase-card {
+  background: rgba(255, 255, 255, 0.64);
+  border: 1px solid rgba(203, 217, 231, 0.88);
+  box-shadow: 0 24px 48px rgba(33, 53, 71, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.hero-book {
+  padding: 24px;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-book::after {
+  content: "";
+  position: absolute;
+  inset: auto -30px -50px auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155, 188, 255, 0.24), rgba(155, 188, 255, 0) 70%);
+}
+
+.mini-label,
+.phase-kicker {
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f85a2;
+}
+
+.hero-book h2 {
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 3.4vw, 2.9rem);
+  line-height: 1.05;
+}
+
+.hero-book p {
+  margin-bottom: 0;
+  color: var(--sub);
+}
+
+.hero-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.float-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(202, 215, 232, 0.92);
+  box-shadow: 0 12px 24px rgba(33, 53, 71, 0.08);
+  font-weight: 700;
+  color: #546372;
+}
+
+.hero-letters {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  justify-content: flex-end;
+  padding-right: 8px;
+}
+
+.hero-letters span {
+  display: inline-grid;
+  place-items: center;
+  width: clamp(54px, 6vw, 78px);
+  height: clamp(54px, 6vw, 78px);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(223, 234, 247, 0.58));
+  border: 1px solid rgba(196, 212, 230, 0.9);
+  box-shadow: 0 20px 30px rgba(33, 53, 71, 0.09);
+  color: #6f7e8f;
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  font-weight: 900;
+}
+
+.phase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.phase-card {
+  padding: 20px;
+  border-radius: 22px;
+}
+
+.phase-card h3 {
+  margin-bottom: 10px;
+}
+
+.phase-card p {
+  color: var(--sub);
+}
+
+.phase-list {
+  margin: 16px 0 0;
+}
+
+.plan-grid {
+  margin-top: 18px;
 }
 
 .panel-title {
@@ -355,5 +527,20 @@ li + li {
 
   .btn-row .btn-secondary[href*="chapter-"]::before {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: auto;
+  }
+
+  .hero-letters {
+    justify-content: flex-start;
+    padding-right: 0;
   }
 }
