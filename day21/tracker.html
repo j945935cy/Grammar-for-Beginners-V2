@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21 天學習追蹤表</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="tag">Tracker｜可勾選進度</span>
+      <h1>21 天學習追蹤表</h1>
+      <p class="lead">這一頁可以直接記錄你完成到哪裡。勾選狀態會保留在這台瀏覽器裡，適合每天打開一次，把當天 Day 頁和每週複習頁勾掉。</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="index.html">回 Day21 首頁</a>
+        <button class="btn btn-secondary" type="button" id="reset-progress">清除全部勾選</button>
+      </div>
+      <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <p class="progress-copy" id="progress-copy">0 / 24 完成</p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <span class="badge-round">日</span>
+        <h2>每日進度</h2>
+      </div>
+      <ul class="tracker-list">
+        <li><label class="tracker-check"><input type="checkbox" data-key="day01"><span>Day 1｜英文句子的基本組成</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day02"><span>Day 2｜主詞、動詞、受詞怎麼看</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day03"><span>Day 3｜be 動詞用法</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day04"><span>Day 4｜一般動詞入門</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day05"><span>Day 5｜現在簡單式</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day06"><span>Day 6｜現在進行式</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day07"><span>Day 7｜否定句與 Yes/No 問句</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day08"><span>Day 8｜疑問詞問句</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day09"><span>Day 9｜過去式</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day10"><span>Day 10｜未來式</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day11"><span>Day 11｜助動詞 can / should / must</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day12"><span>Day 12｜名詞單複數與冠詞</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day13"><span>Day 13｜代名詞與所有格</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day14"><span>Day 14｜形容詞與副詞</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day15"><span>Day 15｜介系詞與時間地點表達</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day16"><span>Day 16｜連接詞與句子延伸</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day17"><span>Day 17｜比較級與最高級</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day18"><span>Day 18｜現在完成式</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day19"><span>Day 19｜被動語態</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day20"><span>Day 20｜關係子句與連綴動詞</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="day21"><span>Day 21｜假設語氣與總複習</span></label></li>
+      </ul>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">
+        <span class="badge-round">週</span>
+        <h2>每週複習</h2>
+      </div>
+      <ul class="tracker-list">
+        <li><label class="tracker-check"><input type="checkbox" data-key="review01"><span>Review 1｜Day 1-7 打底期複習</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="review02"><span>Review 2｜Day 8-14 擴充期複習</span></label></li>
+        <li><label class="tracker-check"><input type="checkbox" data-key="review03"><span>Review 3｜Day 15-21 整合期複習</span></label></li>
+      </ul>
+      <div class="tracker-actions">
+        <a class="btn btn-secondary" href="review-week-01.html">打開 Review 1</a>
+        <a class="btn btn-secondary" href="review-week-02.html">打開 Review 2</a>
+        <a class="btn btn-secondary" href="review-week-03.html">打開 Review 3</a>
+      </div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      const storageKey = "day21-progress-v1";
+      const checkboxes = Array.from(document.querySelectorAll("input[type='checkbox'][data-key]"));
+      const progressFill = document.getElementById("progress-fill");
+      const progressCopy = document.getElementById("progress-copy");
+      const resetButton = document.getElementById("reset-progress");
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || "{}");
+        } catch (error) {
+          return {};
+        }
+      }
+
+      function saveState(state) {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      }
+
+      function updateProgress() {
+        const completed = checkboxes.filter((checkbox) => checkbox.checked).length;
+        const total = checkboxes.length;
+        const percent = total === 0 ? 0 : (completed / total) * 100;
+        progressFill.style.width = percent + "%";
+        progressCopy.textContent = completed + " / " + total + " 完成";
+      }
+
+      const state = loadState();
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = Boolean(state[checkbox.dataset.key]);
+        checkbox.addEventListener("change", () => {
+          state[checkbox.dataset.key] = checkbox.checked;
+          saveState(state);
+          updateProgress();
+        });
+      });
+
+      resetButton.addEventListener("click", () => {
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = false;
+          state[checkbox.dataset.key] = false;
+        });
+        saveState(state);
+        updateProgress();
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>
