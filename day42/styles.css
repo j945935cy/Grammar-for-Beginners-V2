@@ -1,0 +1,14 @@
+@import url("../styles.css");
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255, 241, 217, 0.52) 0, transparent 33%),
+    radial-gradient(circle at bottom right, rgba(190, 218, 255, 0.34) 0, transparent 28%),
+    #f8f4ee;
+}
+
+.hero {
+  background:
+    radial-gradient(circle at top right, rgba(255, 214, 168, 0.3), rgba(255, 214, 168, 0) 32%),
+    linear-gradient(145deg, #fffdf8, #f7f4ef 45%, #f5f8fc);
+}
