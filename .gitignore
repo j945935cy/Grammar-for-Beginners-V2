@@ -8,3 +8,8 @@
 Thumbs.db
 npm-debug.log*
 node_modules/
+.epub-build/
+english-grammar.epub
+english-grammar-sigil.epub
+cover.png
+cover2.png
